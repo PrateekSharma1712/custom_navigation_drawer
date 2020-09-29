@@ -2,6 +2,8 @@ import '../custom_navigation_drawer.dart';
 import 'package:flutter/material.dart';
 
 class CollapsingNavigationDrawer extends StatefulWidget {
+  CollapsingNavigationDrawer(this.navigationItems);
+  final List<NavigationModel> navigationItems;
   @override
   CollapsingNavigationDrawerState createState() {
     return new CollapsingNavigationDrawerState();
@@ -28,13 +30,14 @@ class CollapsingNavigationDrawerState extends State<CollapsingNavigationDrawer>
 
   @override
   Widget build(BuildContext context) {
+    final items = widget.navigationItems;
     return AnimatedBuilder(
       animation: _animationController,
-      builder: (context, widget) => getWidget(context, widget),
+      builder: (context, widget) => getWidget(context, widget, items),
     );
   }
 
-  Widget getWidget(context, widget) {
+  Widget getWidget(context, widget, navigationItems) {
     return Material(
       elevation: 80.0,
       child: Container(
